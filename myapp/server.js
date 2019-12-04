@@ -17,8 +17,8 @@ const { check, validationResult } = require('express-validator');
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'build')));
 // app.use(express.static(__dirname + ''));
-var Userpatient = require('./data.js').Userpatient
-var Userdoctor = require('./data.js').Userdoctor
+// var Userpatient = require('./data.js').Userpatient
+// var Userdoctor = require('./data.js').Userdoctor
 var db = require("./data.js");
 
 // app.get('/', (req, res) => {
@@ -27,17 +27,15 @@ var db = require("./data.js");
 // ----------- Login --------
 app.post('/loginpatient', function(req, res) {
   console.log('///////////// seeeeerver',req.body)
-  Userpatient.findOne({ email: req.body.email }, function (err, user) {
+  db.Userpatient.findOne({ email: req.body.email }, function (err, user) {
     if (err) return res.status(500).send('Error on the server.');
     if (!user) return res.status(404).send('No user found.');
-
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-    crypt.compareSync(req.body.password, user.password);
-    if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-    
+    if (!passwordIsValid){ console.log('sucess'); return res.status(401).send({ auth: false, token: null })};
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
     });
+    
     res.status(200).send({ auth: true, token: token });
   });
 });
@@ -45,20 +43,22 @@ app.post('/loginpatient', function(req, res) {
 
 app.post('/logindoctor', function(req, res) {
   console.log('///////////// seeeeerver',req.body)
-  Userdoctor.findOne({ email: req.body.email }, function (err, user) {
+  db.Userdoctor.findOne({ email: req.body.email }, function (err, user) {
     if (err) return res.status(500).send('Error on the server.');
     if (!user) return res.status(404).send('No user found.');
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-    if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+    if (!passwordIsValid){ console.log('sucess'); return res.status(401).send({ auth: false, token: null })};
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400 // expires in 24 hours
     });
+    
     res.status(200).send({ auth: true, token: token });
   });
 });
 
 
 // ------------ get hole data to the frontend -------------------
+
 
 app.get("/patients", (req, res) => {
   // console.log(req.body)
@@ -72,7 +72,7 @@ app.get("/patients", (req, res) => {
 });
 app.get("/1", (req, res) => {
   // console.log(req.body)
-  Userdoctor.find({}).exec((err, data) => {
+  db.Userdoctor.find({}).exec((err, data) => {
     if (err) {
       console.log(err);
       req.send();
@@ -84,7 +84,10 @@ app.get("/1", (req, res) => {
 
 
 //// ------------------ Register ------------------
+ 
 
+
+/// ------ patient
 app.post('/patientregister',[check('email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long
   ], (req, res) => {
   // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -103,7 +106,7 @@ var genders  = req.body.Gender
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   // console.log(req.body.password,'hashing',hashedPassword)
   // console.log(req.body.lastName,'////////////This is data');
-  var newpatient = new Userpatient({
+  var newpatient = new db.Userpatient({
     firstname: firstnames,
     lastname: lastnames,
     password: hashedPassword,
@@ -123,6 +126,7 @@ var genders  = req.body.Gender
   });  
   newpatient.save();
 });
+/// ------ doctor
 
 app.post('/doctorregister',[check('email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long
   ], (req, res) => {
@@ -135,20 +139,17 @@ app.post('/doctorregister',[check('email').isEmail(),check('password').isLength(
   var firstnames = req.body.firstName;
   var lastnames =req.body.lastName;
   var emails    = req.body.email;
-//  var passwords =req.body.password;
  var mobiles  =req.body.mobilenum;
  var genders =req.body.Gender;
  var addresss =req.body.Address;
   // var img =req.body.img;
    var specializations=req.body.specialization;
    var smallbriefs=req.body.shortbrief;
-   var dayones = req.body.dayone;
-   var daytwos = req.body.daytwo;
-   var daythrees = req.body.daythree;
+//  var workingdays = req.body.workingdays;
 
   var hashedPasswords = bcrypt.hashSync(req.body.password, 8);
-//   // console.log(req.body.username);
-  var newdoctor = new Userdoctor({
+  
+  var newdoctor = new db.Userdoctor({
     firstname : firstnames,
     lastname :lastnames,
     password: hashedPasswords,
@@ -157,13 +158,14 @@ app.post('/doctorregister',[check('email').isEmail(),check('password').isLength(
     gender  :genders,
     address :addresss,
     // img :img,
-  specialization:specializations,
+  // specialization:specializations,
   smallbrief:smallbriefs,
-  dayone:dayones,
-  daytwo:daytwos,
-  daythree:daythrees
+  // workingday:workingdays,
 
-  },
+  } ,
+
+  
+
   function (err, user) {
     if (err) return res.status(500).send("There was a problem registering the user.")
     // create a token
@@ -171,8 +173,19 @@ app.post('/doctorregister',[check('email').isEmail(),check('password').isLength(
       expiresIn: 86400 // expires in 24 hours
     });
     res.status(200).send({ auth: true, token: token });
-  });  
+  });   
+  var newspechalize = new db.Specializationmodel({
+    specialize : specializations,
+    Doctor: newdoctor
+  });
+  // var newworkingday = new db.Workingdaysmodel({
+  //   Workingdays: workingdays,
+  //   Doctor:newdoctor
+
+  // })
   newdoctor.save();
+  newspechalize.save();
+  // newworkingday.save();
 });
   //user login
   

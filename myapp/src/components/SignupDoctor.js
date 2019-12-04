@@ -64,26 +64,25 @@ function sending(event){
     firstName: $('#firstname').val(),
     lastName: $('#lasttname').val(),
     mobilenum: $('#mobilenum').val(),
-   
     Address : $('#adde').val(),
     Gender : $('#gender').val(),
     specialization : $('#specialization').val(),
     shortbrief:$('#shortbrief').val(),
     // image:$('#email').val(),
-    dayone:$('#dayone').val(),
-    daytwo:$('#daytwo').val(),
-    daythree:$('#daythree').val(),
+    // dayone:$('#dayone').val(),
+    // daytwo:$('#daytwo').val(),
+    // daythree:$('#daythree').val(),
   }
   console.log(takesenddata)
   $.ajax({
     url: '/doctorregister', 
-    type : "post",
-    data : takesenddata , 
-    dataType : 'json',
+    type : 'post',
+    data :takesenddata , 
+    dataType : 'JSON',
     success: (data) => {
       console.log("success send!!!")},
     error: (err) => {
-      alert("The Password is less than 6 letters Try again")
+      alert("FAILD")
       console.log('err', err);
     }
   });
@@ -229,7 +228,7 @@ function Signupdoctor() {
         >
 
           {Addresses.map(option => (
-            <MenuItem key={option.value} id="adde" value={option.value} onClick={console.log(option.value)}>
+            <MenuItem key={option.value} id="adde" value={option.value} >
               {option.label}
             </MenuItem>
           ))}
