@@ -1,35 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
-import $ from "jquery";
+// import $ from "jquery";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  
 } from "react-router-dom";
 
 import SignIndoctor from './components/LoginDoctor';
 import SignInpatient from './components/Loginpatient';
 import Signupdoctor from './components/SignupDoctor';
 import Signuppatient from './components/SignupPatients';
-function getdatadb(event){
-
-  // event.preventDefault();
-  $.ajax({
-    url: '/1', 
-    type : "get",
-     dataType : 'json',
-    success: (data) => {
-      console.log("success recive!!!",data)},
-    error: (err) => {
-      console.log('err', err);
-    }
-  });
-}
+import Doctor from './components/Doctor';
+import Home from './components/Homepagr';
 function App() {
-  getdatadb();
+
   return (
     <div className="App">
       <Router>
@@ -50,7 +38,19 @@ function App() {
           
           <a href="/signupdoctor">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > SignUp Doctor </Button></a>
         
+          <br></br>
+          <br></br>
+          <br></br>
+    <a href="/doctorprofile"><Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary" > 
+          doctor profile
+          </Button> </a>
+          
+          <a href="/Homepage">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > HOmepage </Button></a>
+        
           <Switch>
+          {/* <Route path="/SignInPatient">
+            <SignIndoctor />
+          </Route> */}
           <Route path="/SignIndoctor">
             <SignIndoctor />
           </Route>
@@ -62,6 +62,13 @@ function App() {
           </Route>
           <Route path="/signuppatient">
             <Signuppatient />
+          </Route>
+          <Route path="/doctorprofile">
+            <Doctor />
+          </Route>
+          <Route path="/Homepage">
+            {/* <App.hide/> */}
+            <Home />
           </Route>
         </Switch>
           </Router>

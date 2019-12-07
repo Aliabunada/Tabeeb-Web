@@ -10,8 +10,14 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import Homepage from './Homepagr'
 import $ from "jquery";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -46,11 +52,21 @@ function sending(event){
     data : takesenddata , 
     dataType : 'json',
     success: (data) => {
-      console.log("success send!!!")},
+      console.log("success send!!!")
+    profile();},
     error: (err) => {
       console.log('err', err);
     }
   });
+}
+function profile(){
+  return(
+  <Switch>
+  <Route path="/Homepage">
+      <Homepage />
+    </Route>
+  </Switch>
+  );
 }
 
  function SignInpatient() {

@@ -10,8 +10,24 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import MenuItem from "@material-ui/core/MenuItem";
 import Radio from '@material-ui/core/Radio';
-
+// import Homepage from './Homepagr'
 import $ from "jquery";
+// import {
+  
+//   Switch,
+//   Route,
+  
+// } 
+// from "react-router-dom";
+// function profile(){
+//   return(
+//   <Switch>
+//   <Route path="/Homepage">
+//       <Homepage />
+//     </Route>
+//   </Switch>
+//   );
+// }
 const Addresses = [
   {
     value: 'Gaza',
@@ -51,33 +67,7 @@ const useStyles = makeStyles(theme => ({
     width: 200,
   },
 }));
-function sending(event){
-  event.preventDefault();
-var takesenddata ={
-  email:$('#email').val(),
-  password:$('#password').val(),
-  firstName: $('#firstname').val(),
-  lastName: $('#lasttname').val(),
-  mobilenum: $('#mobilenum').val(),
- 
-  Address : $('#address').val(),
-  Gender : $('#gender').val()
- 
-}
-console.log(takesenddata)
-$.ajax({
-  url: '/patientregister', 
-  type : "post",
-  data : takesenddata , 
-  dataType : 'json',
-  success: (data) => {
-    console.log("success send!!!")},
-  error: (err) => {
-    alert("The Password is less than 6 letters Try again")
-    console.log('err', err);
-  }
-});
-}
+
 
 function Signuppatient() {
   const classes = useStyles();
@@ -92,24 +82,55 @@ function Signuppatient() {
     Address : '',
     Gender : '',
   });
-  const handleChangess = event => {
-    setValue(event.target.value);
-  };
+  function sending(event){
+    event.preventDefault();
+  // var takesenddata ={
+  //   email:$('#email').val(),
+  //   password:$('#password').val(),
+  //   firstName: $('#firstname').val(),
+  //   lastName: $('#lasttname').val(),
+  //   mobilenum: $('#mobilenum').val(),
+   
+  //   Address : $('#address').val(),
+  //   Gender : $('#gender').val()
+   
+  // }
+  console.log(values)
+  $.ajax({
+    url: '/patientregister', 
+    type : "post",
+    data : values , 
+    dataType : 'json',
+    success: (data) => {
+      console.log("success send!!!")
+    // profile();
+  },
+    error: (err) => {
+      alert("The Password is less than 6 letters Try again")
+      console.log('err', err);
+    }
+  });
+  }
+  // const handleChangess = event => {
+  //   setValue(event.target.value);
+    
+  // };
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
+    console.log(event.target.value)
   };
-  const handleChanges = event => {
-    setCurrency(event.target.value);
-    setValues(event.target.value)
-  };
+  // const handleChanges = event => {
+  //   setCurrency(event.target.value);
+  //   setValues(event.target.value)
+  // };
 
 
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-  const theme = {
-    spacing: value => value ** 2,
-  }
+  // const handleMouseDownPassword = event => {
+  //   event.preventDefault();
+  // };
+  // const theme = {
+  //   spacing: value => value ** 2,
+  // }
 
   return (
    
@@ -151,14 +172,13 @@ function Signuppatient() {
     <br></br>
     <br></br>
   <div>
-        <TextField
-          id="address"
+  <TextField
+          id="add"
           select
           label="Choose Your Address"
-          
           className={classes.textField}
           // value={currency}
-          onChange={handleChanges}
+          onChange={handleChange('Address')}
           SelectProps={{
             MenuProps: {
               className: classes.menu
@@ -170,18 +190,17 @@ function Signuppatient() {
         >
 
           {Addresses.map(option => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem key={option.value} id="add" value={option.value} >
               {option.label}
             </MenuItem>
           ))}
         </TextField>
         </div>
-
   <br></br>
     <br></br>
     <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
-        <RadioGroup aria-label="gender" name="gender1" id = "gender"value={value} onChange={handleChangess}>
+        <RadioGroup aria-label="gender" name="gender1" id = "gender" onChange={handleChange('Gender')}>
           <FormControlLabel value="female" control={<Radio />} label="Female" />
           <FormControlLabel value="male" control={<Radio />} label="Male" />
          

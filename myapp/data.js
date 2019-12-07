@@ -79,7 +79,7 @@ const doctorschema = Schema({ //Doctor description schema
             required: true},
       email:{type:String,
             required: true, unique: true,
-            lowercase: true},
+            },
       mobile:{type:String,
             required: true},
       gender: {type: String,

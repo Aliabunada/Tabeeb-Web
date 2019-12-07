@@ -9,13 +9,57 @@ import Button from '@material-ui/core/Button';
 import MenuItem from "@material-ui/core/MenuItem";
 import Radio from '@material-ui/core/Radio';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import validator from 'validator';
-import isEmail from 'validator/lib/isEmail';
 import $ from "jquery";
-
+import  { useState } from 'react';
+import Doctor from './Doctor'
+// import {
+//   BrowserRouter ,
+//   Switch,
+//   Route,
+  
+// } from "react-router-dom";
+// import Doctor from './Doctor'
+// function profile(){
+//   return(
+//   <Switch>
+//   <Route path="/DoctorProfile">
+//       <Doctor />
+//     </Route>
+//   </Switch>
+//   );
+// }
+const specialization = [
+{
+  value :'ANESTHESIOLOGY',
+  label :'ANESTHESIOLOGY'
+},{
+  value :'ALLERGY & IMMUNOLOGY',
+  label :'ALLERGY & IMMUNOLOGY'
+},{
+  value :'DERMATOLOGY',
+  label :'DERMATOLOGY'
+},{
+  value :'DIAGNOSTIC RADIOLOGY',
+  label :'DIAGNOSTIC RADIOLOGY'
+},{
+  value :' FAMILY MEDICINE',
+  label :' FAMILY MEDICINE'
+},{
+  value :'INTERNAL MEDICINE',
+  label :'INTERNAL MEDICINE'
+},{
+  value :'PEDIATRICS',
+  label :'PEDIATRICS'
+},{
+  value :'PATHOLOGY',
+  label :'PATHOLOGY'
+},
+{
+  value :'SURGERY',
+  label :'SURGERY'
+},
+]
 const Addresses = [
   {
     value: 'Gaza',
@@ -49,52 +93,20 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: 260,
   },
   menu: {
-    width: 200,
+    width: 260,
   },
 }));
-function sending(event){
-  event.preventDefault();
-
-  var takesenddata ={
-    email:$('#email').val(),
-    password:$('#password').val(),
-    firstName: $('#firstname').val(),
-    lastName: $('#lasttname').val(),
-    mobilenum: $('#mobilenum').val(),
-    Address : $('#adde').val(),
-    Gender : $('#gender').val(),
-    specialization : $('#specialization').val(),
-    shortbrief:$('#shortbrief').val(),
-    // image:$('#email').val(),
-    // dayone:$('#dayone').val(),
-    // daytwo:$('#daytwo').val(),
-    // daythree:$('#daythree').val(),
-  }
-  console.log(takesenddata)
-  $.ajax({
-    url: '/doctorregister', 
-    type : 'post',
-    data :takesenddata , 
-    dataType : 'JSON',
-    success: (data) => {
-      console.log("success send!!!")},
-    error: (err) => {
-      alert("FAILD")
-      console.log('err', err);
-    }
-  });
-}
 
 
 function Signupdoctor() {
   
   const classes = useStyles();
-  const [currency, setCurrency] = React.useState("Gaza");
-  const [value, setValue] = React.useState('male');
-  const [values, setValues] = React.useState({
+  // const [currency, setCurrency] = useState("Gaza");
+  // const [value, setValue] =useState('male');
+  const [values, setValues] =useState({
 
     firstName: '',
     lastName: '',
@@ -102,33 +114,51 @@ function Signupdoctor() {
     mobilenum: '',
     Email:'',
     Address : '',
-    Gender : '',
+    gender : '',
     specialization : '',
     shortbrief:'',
-    image:'',
-    dayone:'',
-    daytwo:'',
-    daythree:'',
+    // image:'',
+   workingdays:''
 
   });
-  const handleChangess = event => {
-    setValue(event.target.value);
-  };
+  
+// var a = values;
+function sending(event){
+  event.preventDefault();
+
+  console.log(values)
+  $.ajax({
+    url: '/doctorregister', 
+    type : 'post',
+    data :values , 
+    dataType : 'json',
+    success: (data) => {
+      console.log("success send!!!")}, 
+    error: (err) => {
+      alert("FAILD")
+      console.log('err', err);
+    }
+  });
+}
+  // const handleChangess = event => {
+  //   setValue(event.target.value);
+  // };
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
+    // console.log(event.target.value,'this is the value in handle change')
   };
-  const handleChanges = event => {
-    setCurrency(event.target.value);
-    setValues(event.target.value)
-  };
+  // const handleChanges = event => {
+  //   setCurrency(event.target.value);
+  //   setValues(event.target.value)
+  // };
 
 
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-  const theme = {
-    spacing: value => value ** 2,
-  }
+  // const handleMouseDownPassword = event => {
+  //   event.preventDefault();
+  // };
+  // const theme = {
+  //   spacing: value => value ** 2,
+  // }
 
   return (
    
@@ -173,21 +203,50 @@ function Signupdoctor() {
     <br></br>
     <br></br>
     <br></br>
-    <TextField className= {classes.menu} id="specialization" label="Specialization" variant="outlined"  onChange={handleChange('specialization')} style={{height:100}}/>
+    <br></br>
+
+
+  <div>
+        <TextField
+          id="specialization"
+          select
+          label="Choose Your specialization"
+          className={classes.textField}
+          // value={currency}
+          onChange={handleChange('specialization')}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu
+            }
+          }}
+          helperText="Please select your specialization"
+          margin="normal"
+          variant="outlined"
+        >
+
+          {specialization.map(option => (
+            <MenuItem key={option.value} id="specializations" value={option.value} >
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+        </div>
+ 
     <br></br>
     <br></br>
-    <br></br>
-    <label  > Working Days</label>
-    <br></br>
-    <br></br>
-    <TextField className= {classes.menu} id="dayone" label="first Day" variant="outlined"  onChange={handleChange('dayone')}/>
-    <br></br>
-    <br></br>
-    <TextField className= {classes.menu} id="daytwo" label="second Day" variant="outlined"  onChange={handleChange('daytwo')}/>
-        <br></br>
-    <br></br>
-    <TextField className= {classes.menu} id="daythree" label="third Day" variant="outlined"  onChange={handleChange('daythree')}/>
-    <br></br>
+    <FormControl component="fieldset" >
+        <FormLabel component="legend">Working Days</FormLabel>
+        <RadioGroup aria-label="Working Days" onChange={handleChange('workingdays')} name="workingdays" id ="WorkingDayss" >
+        <FormControlLabel value="Saterday,Monday,Wednesday" control={<Radio />}  label="Saterday , Monday , Wednesday" />
+    <FormControlLabel value="Sunday,Tuesday,Theresday" control={<Radio />}   label="Sunday , Tuesday , Theresday" />
+    
+        </RadioGroup>
+      </FormControl>
     <br></br>
     <br></br>
     <br></br>
@@ -228,7 +287,7 @@ function Signupdoctor() {
         >
 
           {Addresses.map(option => (
-            <MenuItem key={option.value} id="adde" value={option.value} >
+            <MenuItem key={option.value} id="add" value={option.value} >
               {option.label}
             </MenuItem>
           ))}
@@ -239,10 +298,11 @@ function Signupdoctor() {
     <br></br>
     <FormControl component="fieldset" >
         <FormLabel component="legend">Gender</FormLabel>
-        <RadioGroup aria-label="gender" name="gender1" id ="gender" defaultValue="female">
+        <RadioGroup aria-label="gender" name="gender" onChange={handleChange('gender')} id ="genderss" defaultValue="other">
         <FormControlLabel value="female" control={<Radio />}  label="Female" />
+
     <FormControlLabel value="male" control={<Radio />}   label="Male" />
-          
+    <FormControlLabel value="other" control={<Radio />}   label="Other" />
         </RadioGroup>
       </FormControl>
       

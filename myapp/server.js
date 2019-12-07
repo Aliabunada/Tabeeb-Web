@@ -70,7 +70,7 @@ app.get("/patients", (req, res) => {
     res.json(data);
   });
 });
-app.get("/1", (req, res) => {
+app.get("/gettingdata", (req, res) => {
   // console.log(req.body)
   db.Userdoctor.find({}).exec((err, data) => {
     if (err) {
@@ -88,7 +88,7 @@ app.get("/1", (req, res) => {
 
 
 /// ------ patient
-app.post('/patientregister',[check('email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long
+app.post('/patientregister',[check('Email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long
   ], (req, res) => {
   // Finds the validation errors in this request and wraps them in an object with handy functions
   const errors = validationResult(req);
@@ -98,7 +98,7 @@ app.post('/patientregister',[check('email').isEmail(),check('password').isLength
 var firstnames = req.body.firstName;
 console.log(firstnames)
 var lastnames = req.body.lastName;
-var emails = req.body.email;
+var emails = req.body.Email;
 var mobiles = req.body.mobilenum;
 var addresss = req.body.Address ;
 var genders  = req.body.Gender
@@ -128,7 +128,7 @@ var genders  = req.body.Gender
 });
 /// ------ doctor
 
-app.post('/doctorregister',[check('email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long
+app.post('/doctorregister',[check('Email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long
   ], (req, res) => {
     console.log(req.body,",/////)")
   // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -138,14 +138,14 @@ app.post('/doctorregister',[check('email').isEmail(),check('password').isLength(
   }
   var firstnames = req.body.firstName;
   var lastnames =req.body.lastName;
-  var emails    = req.body.email;
+  var emails    = req.body.Email;
  var mobiles  =req.body.mobilenum;
  var genders =req.body.Gender;
  var addresss =req.body.Address;
-  // var img =req.body.img;
+  var img =req.body.img;
    var specializations=req.body.specialization;
    var smallbriefs=req.body.shortbrief;
-//  var workingdays = req.body.workingdays;
+ var workingdays = req.body.workingdays;
 
   var hashedPasswords = bcrypt.hashSync(req.body.password, 8);
   
@@ -158,9 +158,9 @@ app.post('/doctorregister',[check('email').isEmail(),check('password').isLength(
     gender  :genders,
     address :addresss,
     // img :img,
-  // specialization:specializations,
+  specialization:specializations,
   smallbrief:smallbriefs,
-  // workingday:workingdays,
+  workingday:workingdays,
 
   } ,
 
@@ -178,14 +178,14 @@ app.post('/doctorregister',[check('email').isEmail(),check('password').isLength(
     specialize : specializations,
     Doctor: newdoctor
   });
-  // var newworkingday = new db.Workingdaysmodel({
-  //   Workingdays: workingdays,
-  //   Doctor:newdoctor
+  var newworkingday = new db.Workingdaysmodel({
+    Workingdays: workingdays,
+    Doctor:newdoctor
 
-  // })
+  })
   newdoctor.save();
   newspechalize.save();
-  // newworkingday.save();
+  newworkingday.save();
 });
   //user login
   
