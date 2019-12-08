@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 // var Userpatient = require('./data.js').Userpatient
 // var Userdoctor = require('./data.js').Userdoctor
 var db = require("./data.js");
+var count = 0;
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'))
@@ -81,8 +82,19 @@ app.get("/gettingdata", (req, res) => {
     console.log(data,'aaaa')
   });
 });
+ 
+app.get('/getthelastdoctor', (req, res) => {
+db.Userdoctor.find()
+.sort({ createdAt: "desc" })
+.limit(1)
+.exec(callback);
 
-
+});
+app.get('/getthelastpatient', (req, res) => {
+  db.Userpatient.findOne({email:req.body.email})
+  
+  
+  });
 //// ------------------ Register ------------------
  
 
@@ -107,6 +119,7 @@ var genders  = req.body.Gender
   // console.log(req.body.password,'hashing',hashedPassword)
   // console.log(req.body.lastName,'////////////This is data');
   var newpatient = new db.Userpatient({
+    id:++count,
     firstname: firstnames,
     lastname: lastnames,
     password: hashedPassword,

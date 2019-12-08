@@ -15,13 +15,87 @@ import SignInpatient from './components/Loginpatient';
 import Signupdoctor from './components/SignupDoctor';
 import Signuppatient from './components/SignupPatients';
 import Doctor from './components/Doctor';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import Home from './components/Homepagr';
+// import Image from 'material-ui-image'
+// import Image from 'material-ui-image'
+// const styles = {
+//   paperContainer: {
+//       height: 1356,
+//       backgroundImage: `url(${"/src/image.jpg"})`
+//   }
+// };
 function App() {
 
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
-        <a href="/SignInPatient">  <Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary"  >
+     
+      
+
+           <Switch>
+          <Route path="/" exact component={HOme}>
+
+          </Route>
+
+          <Route path="/SignIndoctor" component={SignIndoctor}>
+          
+          </Route>
+          <Route path="/SignInPatient" component={SignInpatient}>
+          
+          </Route>
+          <Route path="/signupdoctor" component={Signupdoctor}>
+        
+          </Route>
+          <Route path="/signuppatient" component={Signuppatient}>
+          
+          </Route>
+          <Route path="/doctorprofile" component={Doctor}>
+          
+          </Route>
+          <Route path="/Homepage" component={Home}>
+            {/* <App.hide/> */}
+          
+          </Route>
+        </Switch>
+          </Router> 
+          
+    </div>
+    
+
+  );
+}
+const HOme = () =>(
+<div >
+ 
+<AppBar
+      position="static" style={{marginTop:0,marginBottom:50}}>
+          
+        <Toolbar
+      
+         >
+          <IconButton
+            edge="start"
+            // className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            
+          </IconButton>
+          <Typography  variant="h3" noWrap>
+          Tabeeb Web
+          </Typography>
+          </Toolbar>
+          </AppBar>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div style={{marginLeft:-1400}}>
+          <a href="/SignInPatient">  <Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary"  >
              {/* <a href="http://localhost:3000/signUppatient"></a> */}
             SignIn Patient
           </Button> </a>
@@ -47,36 +121,9 @@ function App() {
           
           <a href="/Homepage">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > HOmepage </Button></a>
         
-          <Switch>
-          {/* <Route path="/SignInPatient">
-            <SignIndoctor />
-          </Route> */}
-          <Route path="/SignIndoctor">
-            <SignIndoctor />
-          </Route>
-          <Route path="/SignInPatient">
-            <SignInpatient />
-          </Route>
-          <Route path="/signupdoctor">
-            <Signupdoctor />
-          </Route>
-          <Route path="/signuppatient">
-            <Signuppatient />
-          </Route>
-          <Route path="/doctorprofile">
-            <Doctor />
-          </Route>
-          <Route path="/Homepage">
-            {/* <App.hide/> */}
-            <Home />
-          </Route>
-        </Switch>
-          </Router>
-          
-    </div>
-    
+          </div>
 
-  );
-}
+        
+</div>)
 
 export default App;

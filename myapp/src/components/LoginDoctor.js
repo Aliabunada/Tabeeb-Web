@@ -7,13 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import $ from "jquery";
-import {
-
-  
-  Route,
-  Redirect
-} from "react-router-dom";
-import Doctor from './Doctor'
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,7 +42,8 @@ function sending(event){
     data : takesenddata , 
     dataType : 'json',
     success: (data) => {
-      return <Redirect to="/Doctor" />;
+      window.open('http://localhost:3003/doctorprofile')
+      // return <Redirect to="/Doctor" />;
       // console.log("success send!!!");
      
     },
@@ -60,15 +54,7 @@ function sending(event){
   });
 }
 
-function profile(){
-  return(
 
-  <Route path="/Doctor"  >
-      <Doctor />
-    </Route>
-  
-  );
-}
 
 function SignIndoctor() {
   const classes = useStyles();
@@ -106,7 +92,10 @@ function SignIndoctor() {
          
             autoComplete="current-password"
           />
-         
+           <br></br>
+         <a href='http://localhost:3002/SignInPatient'>Login As A Patient</a>
+         <br></br>
+         <br></br>
           <Button
             type="submit"
             fullWidth

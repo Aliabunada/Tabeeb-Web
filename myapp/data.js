@@ -11,7 +11,7 @@ db.once('open', function() {
 ///____________________________ patient ______________________
 
 const patientschema = Schema({ //patient description schema
-      
+      id:{type:Number , unique:true},
   firstname:{type: String,
         required: true},
   lastname:{type: String,
@@ -34,6 +34,7 @@ const Userpatient = mongoose.model('Userpatient', patientschema);
 
 
 const Appoinments = Schema({
+      id:{type:Number , unique:true},
       Patient:{type: Schema.Types.ObjectId, ref: 'Userpatient'},
       Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
       Appoinmentdate: {type: Date}
@@ -41,6 +42,7 @@ const Appoinments = Schema({
 const Appoinmentsmodel = mongoose.model('Appoinmentsmodel', Appoinments);
 
 const Specialization = Schema({
+      id:{type:Number , unique:true},
       Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
       specialize: {type: String}
 
@@ -48,6 +50,7 @@ const Specialization = Schema({
 const Specializationmodel = mongoose.model('Specializationmodel', Specialization);
 
 const Workingdays = Schema({
+       id:{type:Number , unique:true},
       Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
       Workingdays: {type: String}
 })
@@ -71,6 +74,7 @@ const Workingdaysmodel = mongoose.model('Workingdaysmodel', Workingdays);
 
 
 const doctorschema = Schema({ //Doctor description schema
+      id:{type:Number , unique:true},
       firstname:{type: String,
             required: true},
       lastname:{type: String,

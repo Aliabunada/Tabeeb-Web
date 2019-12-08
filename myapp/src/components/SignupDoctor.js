@@ -12,7 +12,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import IconButton from '@material-ui/core/IconButton';
 import $ from "jquery";
 import  { useState } from 'react';
-import Doctor from './Doctor'
+// import Doctor from './Doctor'
 // import {
 //   BrowserRouter ,
 //   Switch,
@@ -313,6 +313,7 @@ function sending(event){
    <br></br>
     <br></br>
     <br></br>
+    <a href='http://localhost:3002/signuppatient'>SignUp As A Patient</a>
 
     <Button variant="contained" color="primary"  className= {classes.menu} onClick={sending} >
    SignUP

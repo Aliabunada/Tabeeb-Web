@@ -2,22 +2,13 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Homepage from './Homepagr'
+
 import $ from "jquery";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  
-} from "react-router-dom";
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -52,22 +43,23 @@ function sending(event){
     data : takesenddata , 
     dataType : 'json',
     success: (data) => {
+     window.open('http://localhost:3003/Homepage')
       console.log("success send!!!")
-    profile();},
+    },
     error: (err) => {
       console.log('err', err);
     }
   });
 }
-function profile(){
-  return(
-  <Switch>
-  <Route path="/Homepage">
-      <Homepage />
-    </Route>
-  </Switch>
-  );
-}
+// function profile(){
+//   return(
+//   <Switch>
+//   <Route path="/Homepage">
+//       <Homepage />
+//     </Route>
+//   </Switch>
+//   );
+// }
 
  function SignInpatient() {
   const classes = useStyles();
@@ -103,7 +95,10 @@ function profile(){
             id="password"
             autoComplete="current-password"
           />
-         
+             <br></br>
+         <a href='http://localhost:3002/SignIndoctor'>Login As A Doctor</a>
+         <br></br>
+         <br></br>
           <Button
             type="submit"
             fullWidth

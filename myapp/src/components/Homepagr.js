@@ -16,16 +16,18 @@ export default function HomePage() {
 
     useEffect(() => { 
       
-      axios.get('gettingdata')
+      axios.get('/gettingdata')
       .then(({ data }) => {
         setDatas(data);
+        console.log(data)
           console.log("success recive!!!",data)
         });
     
 
-          
-  })
+           
 
+  })
+ 
        console.log(datas);
     
 return (

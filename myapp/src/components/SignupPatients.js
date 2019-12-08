@@ -71,8 +71,8 @@ const useStyles = makeStyles(theme => ({
 
 function Signuppatient() {
   const classes = useStyles();
-  const [currency, setCurrency] = React.useState("Gaza");
-  const [value, setValue] = React.useState('male');
+  // const [currency, setCurrency] = React.useState("Gaza");
+  // const [value, setValue] = React.useState('male');
   const [values, setValues] = React.useState({
     firstName: '',
     lastName: '',
@@ -111,26 +111,12 @@ function Signuppatient() {
     }
   });
   }
-  // const handleChangess = event => {
-  //   setValue(event.target.value);
-    
-  // };
+
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
     console.log(event.target.value)
   };
-  // const handleChanges = event => {
-  //   setCurrency(event.target.value);
-  //   setValues(event.target.value)
-  // };
 
-
-  // const handleMouseDownPassword = event => {
-  //   event.preventDefault();
-  // };
-  // const theme = {
-  //   spacing: value => value ** 2,
-  // }
 
   return (
    
@@ -210,7 +196,7 @@ function Signuppatient() {
       <br></br>
     <br></br>
     <br></br>
-   <a href='#'>SignUp As A Doctor</a>
+   <a href='http://localhost:3002/signupdoctor'>SignUp As A Doctor</a>
    <br></br>
     <br></br>
     <br></br>
