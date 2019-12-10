@@ -29,11 +29,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 function sending(event){
+  localStorage.removeItem('em');
   event.preventDefault();
 
   var takesenddata ={
     email:$('#emaillogin').val(),
     password:$('#passwordlogin').val()
+
   }
   console.log(takesenddata)
   $.ajax({
@@ -42,9 +44,12 @@ function sending(event){
     data : takesenddata , 
     dataType : 'json',
     success: (data) => {
-      window.open('http://localhost:3003/doctorprofile')
+      console.log(takesenddata.email)
+      localStorage.setItem('em',takesenddata.email)
+      console.log(localStorage.getItem('em'),"success send!!!");
+        window.open('http://localhost:3004/doctorprofile')
       // return <Redirect to="/Doctor" />;
-      // console.log("success send!!!");
+      console.log("success send!!!");
      
     },
     error: (err) => {
@@ -93,7 +98,7 @@ function SignIndoctor() {
             autoComplete="current-password"
           />
            <br></br>
-         <a href='http://localhost:3002/SignInPatient'>Login As A Patient</a>
+         <a href='http://localhost:3004/SignInPatient'>Login As A Patient</a>
          <br></br>
          <br></br>
           <Button

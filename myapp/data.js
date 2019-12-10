@@ -41,20 +41,20 @@ const Appoinments = Schema({
 })
 const Appoinmentsmodel = mongoose.model('Appoinmentsmodel', Appoinments);
 
-const Specialization = Schema({
-      id:{type:Number , unique:true},
-      Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
-      specialize: {type: String}
+// const Specialization = Schema({
+//       id:{type:Number , unique:true},
+//       Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
+//       specialize: {type: String}
 
-})
-const Specializationmodel = mongoose.model('Specializationmodel', Specialization);
+// })
+// const Specializationmodel = mongoose.model('Specializationmodel', Specialization);
 
-const Workingdays = Schema({
-       id:{type:Number , unique:true},
-      Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
-      Workingdays: {type: String}
-})
-const Workingdaysmodel = mongoose.model('Workingdaysmodel', Workingdays);
+// const Workingdays = Schema({
+//        id:{type:Number , unique:true},
+//       Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
+//       Workingdays: {type: String}
+// })
+// const Workingdaysmodel = mongoose.model('Workingdaysmodel', Workingdays);
 
 // const Auth = Schema({ //schema for the authentication 
 //       username: {type: String},
@@ -74,7 +74,7 @@ const Workingdaysmodel = mongoose.model('Workingdaysmodel', Workingdays);
 
 
 const doctorschema = Schema({ //Doctor description schema
-      id:{type:Number , unique:true},
+      
       firstname:{type: String,
             required: true},
       lastname:{type: String,
@@ -82,7 +82,8 @@ const doctorschema = Schema({ //Doctor description schema
       password:{type:String,
             required: true},
       email:{type:String,
-            required: true, unique: true,
+            required: true,
+            unique:true
             },
       mobile:{type:String,
             required: true},
@@ -91,6 +92,8 @@ const doctorschema = Schema({ //Doctor description schema
       address: {type: String,
        },
     img :{type: String},
+    Workingdays: {type: String},
+    specialize: {type: String},
     smallbrief:{type: String}
   })
   
@@ -101,4 +104,4 @@ const doctorschema = Schema({ //Doctor description schema
 /////--------------------------------//----------------------------------------
 
 
-module.exports={Userdoctor, Userpatient,Workingdaysmodel,Specializationmodel,Appoinmentsmodel};
+module.exports={Userdoctor, Userpatient,Appoinmentsmodel};

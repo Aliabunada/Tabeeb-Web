@@ -20,6 +20,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Home from './components/Homepagr';
+import EventCalender from './components/calender';
+import c from './components/calendertest';
 // import Image from 'material-ui-image'
 // import Image from 'material-ui-image'
 // const styles = {
@@ -60,6 +62,8 @@ function App() {
             {/* <App.hide/> */}
           
           </Route>
+          <Route path="/calender"  component={c}></Route>
+          {/* <Route path="/calender"  component={EventCalender}></Route> */}
         </Switch>
           </Router> 
           
@@ -94,7 +98,7 @@ const HOme = () =>(
           <br></br>
           <br></br>
           <br></br>
-          <div style={{marginLeft:-1400}}>
+          <div>
           <a href="/SignInPatient">  <Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary"  >
              {/* <a href="http://localhost:3000/signUppatient"></a> */}
             SignIn Patient

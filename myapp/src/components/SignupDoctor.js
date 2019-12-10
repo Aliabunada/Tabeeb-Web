@@ -133,7 +133,10 @@ function sending(event){
     data :values , 
     dataType : 'json',
     success: (data) => {
-      console.log("success send!!!")}, 
+      console.log("success send!!!")
+      window.open('http://localhost:3002/SignIndoctor')
+    }, 
+      
     error: (err) => {
       alert("FAILD")
       console.log('err', err);
@@ -314,7 +317,9 @@ function sending(event){
     <br></br>
     <br></br>
     <a href='http://localhost:3002/signuppatient'>SignUp As A Patient</a>
-
+    <br></br>
+    <br></br>
+    <br></br>
     <Button variant="contained" color="primary"  className= {classes.menu} onClick={sending} >
    SignUP
   </Button>

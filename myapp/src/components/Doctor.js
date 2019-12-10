@@ -11,9 +11,11 @@ import axios from 'axios';
 
 export default function Doctor() {
     const [datas, setDatas] = useState([]);
-
+    console.log(localStorage.getItem('em'),"success send!!!");
+    var emailuser = localStorage.getItem('em')
+    localStorage.clear();
 useEffect(() => {
-      axios.get('/gettingdata') 
+      axios.get('/getinfodoc/'+emailuser) 
             .then(({ data }) =>{
             setDatas(data);
           })   
@@ -35,19 +37,19 @@ useEffect(() => {
   ))} */}
   
     <Typography component="h2" variant="h5">
-        Name : 
+        Name :  {datas.firstname}       {datas.lastname}
         </Typography>
 <br></br>
 <Typography component="h4" variant="h5">
-        specialization :  
+        specialization :  {datas.specialize} 
         </Typography>
         <br></br>
 <Typography component="h4" variant="h5">
-        Mobilenumbew :  
+        Mobilenumbew :  {datas.mobile} 
         </Typography>
         <br></br>
         <Typography component="h4" variant="h5">
-        Working Days :  
+        Working Days :   {datas.Workingdays} 
         </Typography>
         <br></br>
         <br></br>

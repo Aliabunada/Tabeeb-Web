@@ -71,30 +71,60 @@ app.get("/patients", (req, res) => {
     res.json(data);
   });
 });
+// app.get("/gettingdata", (req, res) => {
+// //   // console.log(req.body)
+// //   db.Userdoctor.find({}).exec((err, data) => {
+// //     if (err) {
+// //       console.log(err);
+// //       req.send();
+// //     }
+      
+// //     res.json(data);
+// //     console.log(data,'aaaa')
+// //   });
+// // //   db.Specializationmodel.find({}).exec((err, datass)=>{
+// // //     if (err) {
+// // //       console.log(err);
+// // //       req.send();
+// // //     }
+// // //     res.json(datass);
+// // //   console.log(datass,'bbbb')
+// // // });
+// });
 app.get("/gettingdata", (req, res) => {
-  // console.log(req.body)
-  db.Userdoctor.find({}).exec((err, data) => {
-    if (err) {
-      console.log(err);
-      req.send();
-    }
-    res.json(data);
-    console.log(data,'aaaa')
-  });
+  // Promise.all([
+    db.Userdoctor.find({}).sort()
+   
+  // ])
+  .then(data => {console.log(data)
+  res.json(data)})
+ 
 });
  
-app.get('/getthelastdoctor', (req, res) => {
-db.Userdoctor.find()
-.sort({ createdAt: "desc" })
-.limit(1)
-.exec(callback);
+app.get('/getinfodoc/:id', (req, res) => {
+  var emailuser = req.params.id;
+ db.Userdoctor.findOne({email:emailuser}).exec((err, data) => {
+  if (err) {
+    console.log(err);
+    req.send();
+  }
 
+  res.json(data);
 });
-app.get('/getthelastpatient', (req, res) => {
-  db.Userpatient.findOne({email:req.body.email})
-  
-  
-  });
+});
+
+
+app.get('/getinfopatient/:id', (req, res) => {
+  var emailuser = req.params.id;
+ db.Userpatient.findOne({email:emailuser}).exec((err, data) => {
+  if (err) {
+    console.log(err);
+    req.send();
+  }
+  localStorage.removeItem('emp');
+  res.json(data);
+});
+});
 //// ------------------ Register ------------------
  
 
@@ -137,7 +167,14 @@ var genders  = req.body.Gender
     });
     res.status(200).send({ auth: true, token: token });
   });  
-  newpatient.save();
+  newpatient.save(function(err) {
+    if (err !== null) {
+        res.status(500).json({ error: "save failed", err: err});
+        return;
+    } else {
+        res.status(201).json(newpatient);
+    };
+});
 });
 /// ------ doctor
 
@@ -155,10 +192,10 @@ app.post('/doctorregister',[check('Email').isEmail(),check('password').isLength(
  var mobiles  =req.body.mobilenum;
  var genders =req.body.Gender;
  var addresss =req.body.Address;
-  var img =req.body.img;
+  // var img =req.body.img;
    var specializations=req.body.specialization;
    var smallbriefs=req.body.shortbrief;
- var workingdays = req.body.workingdays;
+ var workingdaysa = req.body.workingdays;
 
   var hashedPasswords = bcrypt.hashSync(req.body.password, 8);
   
@@ -171,11 +208,11 @@ app.post('/doctorregister',[check('Email').isEmail(),check('password').isLength(
     gender  :genders,
     address :addresss,
     // img :img,
-  specialization:specializations,
+    specialize:specializations,
   smallbrief:smallbriefs,
-  workingday:workingdays,
+  Workingdays:workingdaysa,
 
-  } ,
+  },
 
   
 
@@ -187,18 +224,25 @@ app.post('/doctorregister',[check('Email').isEmail(),check('password').isLength(
     });
     res.status(200).send({ auth: true, token: token });
   });   
-  var newspechalize = new db.Specializationmodel({
-    specialize : specializations,
-    Doctor: newdoctor
-  });
-  var newworkingday = new db.Workingdaysmodel({
-    Workingdays: workingdays,
-    Doctor:newdoctor
+  // var newspechalize = new db.Specializationmodel({
+  //   specialize : specializations,
+  //   Doctor: newdoctor
+  // });
+  // var newworkingday = new db.Workingdaysmodel({
+  //   Workingdays: workingdays,
+  //   Doctor:newdoctor
 
-  })
-  newdoctor.save();
-  newspechalize.save();
-  newworkingday.save();
+  // })
+  newdoctor.save(function(err) {
+    if (err !== null) {
+        res.status(500).json({ error: "save failed", err: err});
+        return;
+    } else {
+        res.status(201).json(newdoctor);
+    };
+});
+  // newspechalize.save();
+  // newworkingday.save();
 });
   //user login
   

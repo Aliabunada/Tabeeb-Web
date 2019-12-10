@@ -102,7 +102,11 @@ function Signuppatient() {
     data : values , 
     dataType : 'json',
     success: (data) => {
+      
       console.log("success send!!!")
+      window.open('http://localhost:3004/SignInPatient')
+    
+      
     // profile();
   },
     error: (err) => {
