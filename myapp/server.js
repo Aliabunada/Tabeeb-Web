@@ -42,6 +42,7 @@ app.post('/loginpatient', function(req, res) {
 });
 
 
+
 app.post('/logindoctor', function(req, res) {
   console.log('///////////// seeeeerver',req.body)
   db.Userdoctor.findOne({ email: req.body.email }, function (err, user) {
@@ -125,9 +126,42 @@ app.get('/getinfopatient/:id', (req, res) => {
   res.json(data);
 });
 });
+
 //// ------------------ Register ------------------
  
+//// ---------- Doctor -------
+app.post('/getappoinments',(req,res)=>{
+  console.log('this is the server Appoinments req', req.body)
+  var  EndTimes = req.body.EndTime;
+ var  Guids =  req.body.Guid;
+  var  Ids = req.body.Id;
+  var  Indexs = req.body.Index;
+  var  IsReadonlys =req.body.IsReadonly;
+  var  StartTimes = req.body.StartTime;
+  var  Subjects = req.body.Subject;
+  // var  Patientemais = req.body.Patientemai;
+  var newAppoinmentt = new db.Appoinmentsmodel({
+    EndTime : EndTimes,
+    Guid :  Guids,
+    Id: Ids,
+    Index :Indexs,
+    IsReadonly : IsReadonlys,
+    StartTime : StartTimes,
+    Subject : Subjects
+    // Patientemai:Patientemais
 
+  })
+  newAppoinmentt.save(function(err) {
+    if (err !== null) {
+        res.status(500).json({ error: "save failed", err: err});
+        return;
+    } else {
+        res.status(201).json(newdoctor);
+    };
+});
+
+
+})
 
 /// ------ patient
 app.post('/patientregister',[check('Email').isEmail(),check('password').isLength({ min: 6 })// password must be at least 6 chars long

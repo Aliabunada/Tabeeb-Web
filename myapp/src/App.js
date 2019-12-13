@@ -22,6 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Home from './components/Homepagr';
 import EventCalender from './components/calender';
 import c from './components/calendertest';
+import AppointmentApp from './components/Test'
 // import Image from 'material-ui-image'
 // import Image from 'material-ui-image'
 // const styles = {
@@ -42,7 +43,7 @@ function App() {
           <Route path="/" exact component={HOme}>
 
           </Route>
-
+<Route path="/ss" component={AppointmentApp}></Route>
           <Route path="/SignIndoctor" component={SignIndoctor}>
           
           </Route>

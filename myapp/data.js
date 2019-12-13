@@ -34,10 +34,24 @@ const Userpatient = mongoose.model('Userpatient', patientschema);
 
 
 const Appoinments = Schema({
-      id:{type:Number , unique:true},
-      Patient:{type: Schema.Types.ObjectId, ref: 'Userpatient'},
-      Doctor :{type: Schema.Types.ObjectId, ref: 'Userdoctor'},
-      Appoinmentdate: {type: Date}
+
+      EndTime : {type: String},
+      Guid :  {type: String},
+      Id: {type: String},
+      Index : {type: String},
+      IsReadonly : {type: String},
+      StartTime : {type: String},
+      Subject : {type: String},
+      Patientemai:{type: String},
+
+      // Patientemail:{type: String},
+      // Doctoremail :{type: String },
+    
+      // Subject: {type: String},
+      // Location: {type: String},
+      // StartTime:{type: String},
+      // EndTime: {type: String},
+      
 })
 const Appoinmentsmodel = mongoose.model('Appoinmentsmodel', Appoinments);
 
