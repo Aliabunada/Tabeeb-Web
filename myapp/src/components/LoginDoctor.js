@@ -47,7 +47,7 @@ function sending(event){
       console.log(takesenddata.email)
       localStorage.setItem('em',takesenddata.email)
       console.log(localStorage.getItem('em'),"success send!!!");
-        window.open('http://localhost:3004/doctorprofile')
+        window.open('http://localhost:3006/doctorprofile')
       // return <Redirect to="/Doctor" />;
       console.log("success send!!!");
      

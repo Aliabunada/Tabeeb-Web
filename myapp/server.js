@@ -92,15 +92,19 @@ app.get("/patients", (req, res) => {
 // // //   console.log(datass,'bbbb')
 // // // });
 // });
+
+//_________________________________________=>{ Get Data from Db To Docprofile }<=__________
 app.get("/gettingdata", (req, res) => {
-  // Promise.all([
+  
     db.Userdoctor.find({}).sort()
    
-  // ])
+
   .then(data => {console.log(data)
   res.json(data)})
  
 });
+
+//_________________________________________=>{ Get Data from Db To Docprofile }<=__________
  
 app.get('/getinfodoc/:id', (req, res) => {
   var emailuser = req.params.id;
@@ -115,6 +119,7 @@ app.get('/getinfodoc/:id', (req, res) => {
 });
 
 
+//_________________________________________=>{ Get Data from Db To Patient }<=__________
 app.get('/getinfopatient/:id', (req, res) => {
   var emailuser = req.params.id;
  db.Userpatient.findOne({email:emailuser}).exec((err, data) => {
@@ -127,6 +132,20 @@ app.get('/getinfopatient/:id', (req, res) => {
 });
 });
 
+//_________________________________________=>{ Get Data from Db To calendar }<=__________
+app.get('/appoinment', (req, res) => {
+  
+   db.Appoinmentsmodel.find({}).exec((err, data) => {
+    if (err) {
+      console.log(err);
+      req.send();
+    }
+    console.log(data,'calendar data')
+    res.json(data);
+  });
+  });
+  
+  
 //// ------------------ Register ------------------
  
 //// ---------- Doctor -------
@@ -139,7 +158,7 @@ app.post('/getappoinments',(req,res)=>{
   var  IsReadonlys =req.body.IsReadonly;
   var  StartTimes = req.body.StartTime;
   var  Subjects = req.body.Subject;
-  // var  Patientemais = req.body.Patientemai;
+  var  Patientemais = req.body.Patientemai;
   var newAppoinmentt = new db.Appoinmentsmodel({
     EndTime : EndTimes,
     Guid :  Guids,
@@ -147,8 +166,8 @@ app.post('/getappoinments',(req,res)=>{
     Index :Indexs,
     IsReadonly : IsReadonlys,
     StartTime : StartTimes,
-    Subject : Subjects
-    // Patientemai:Patientemais
+    Subject : Subjects,
+    Patientemai:Patientemais
 
   })
   newAppoinmentt.save(function(err) {
@@ -156,7 +175,7 @@ app.post('/getappoinments',(req,res)=>{
         res.status(500).json({ error: "save failed", err: err});
         return;
     } else {
-        res.status(201).json(newdoctor);
+        res.status(201).json('DONE');
     };
 });
 

@@ -47,7 +47,7 @@ function sending(event){
       console.log("success send!!!")
       localStorage.setItem('emp',takesenddata.email)
       console.log(localStorage.getItem('emp'),"success send!!!");
-          window.open('http://localhost:3004/Homepage')
+          window.open('http://localhost:3006/Homepage')
     },
     error: (err) => {
       console.log('err', err);

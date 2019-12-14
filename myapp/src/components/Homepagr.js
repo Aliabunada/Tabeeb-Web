@@ -59,25 +59,7 @@ export default function HomePage() {
 return (
 
     <div>
- <AppBar
-      position="static" style={{marginTop:35,marginBottom:50}}>
-          
-        <Toolbar
-      
-         >
-          <IconButton
-            edge="start"
-            // className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            
-          </IconButton>
-          <Typography  variant="h3" noWrap>
-          Tabeeb Web
-          </Typography>
-          </Toolbar>
-          </AppBar>
+ 
 
         {/* <CardMedia
     // className={classes.media}
@@ -93,7 +75,7 @@ return (
   <div key={data._id}>   
     
      <Typography   component="h2" variant="h5">
-  Name :  {data.firstname}   *  {data.lastname} *
+  Name :  {data.firstname}    {data.lastname} 
   </Typography>
 <br></br>
 

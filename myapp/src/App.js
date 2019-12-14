@@ -35,6 +35,29 @@ function App() {
 
   return (
     <div className="App" >
+
+<AppBar
+      position="static" style={{marginTop:0,marginBottom:50}}>
+          
+        <Toolbar
+      
+         >
+          <IconButton
+            edge="start"
+            // className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            
+          </IconButton>
+          <Typography  variant="h3" noWrap>
+          Tabeeb Web
+          </Typography>
+          </Toolbar>
+          </AppBar>
+          <br></br>
+          <br></br>
+          <br></br>
       <Router>
      
       
@@ -76,28 +99,7 @@ function App() {
 const HOme = () =>(
 <div >
  
-<AppBar
-      position="static" style={{marginTop:0,marginBottom:50}}>
-          
-        <Toolbar
-      
-         >
-          <IconButton
-            edge="start"
-            // className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            
-          </IconButton>
-          <Typography  variant="h3" noWrap>
-          Tabeeb Web
-          </Typography>
-          </Toolbar>
-          </AppBar>
-          <br></br>
-          <br></br>
-          <br></br>
+
           <br></br>
           <div>
           <a href="/SignInPatient">  <Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary"  >
