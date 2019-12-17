@@ -47,7 +47,7 @@ function sending(event){
       console.log("success send!!!")
       localStorage.setItem('emp',takesenddata.email)
       console.log(localStorage.getItem('emp'),"success send!!!");
-          window.open('http://localhost:3006/Homepage')
+          window.open('/Homepage')
     },
     error: (err) => {
       console.log('err', err);
@@ -98,8 +98,9 @@ function sending(event){
             id="password"
             autoComplete="current-password"
           />
-             <br></br>
-         <a href='http://localhost:3002/SignIndoctor'>Login As A Doctor</a>
+               <br></br>
+          <br></br>
+         <a href='/SignIndoctor'>Login As A Doctor</a>
          <br></br>
          <br></br>
           <Button
@@ -112,7 +113,10 @@ function sending(event){
           >
             Sign In
           </Button>
-          
+          <br></br>
+          <br></br>
+         <a href='/signuppatient'>Signup As Patient</a>
+       
         </form>
       </div>
       <Box mt={8}>

@@ -16,6 +16,10 @@ app.use(express.json());
 const { check, validationResult } = require('express-validator');
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 // app.use(express.static(__dirname + ''));
 // var Userpatient = require('./data.js').Userpatient
 // var Userdoctor = require('./data.js').Userdoctor
@@ -118,11 +122,38 @@ app.get('/getinfodoc/:id', (req, res) => {
 });
 });
 
+app.get('/appoinmentfordoctor/:id', (req, res) => {
+  var doctorid = req.params.id;
+  console.log(doctorid)
+   db.Appoinmentsmodel.find({Doctorid:doctorid}).exec((err, data) => {
+      if (err) {
+        console.log(err);
+        req.send();
+      }
+    console.log(data)
+      res.json(data);
+    });
+});
+
 
 //_________________________________________=>{ Get Data from Db To Patient }<=__________
 app.get('/getinfopatient/:id', (req, res) => {
   var emailuser = req.params.id;
+  console.log(emailuser)
  db.Userpatient.findOne({email:emailuser}).exec((err, data) => {
+  if (err) {
+    console.log(err);
+    req.send();
+  }
+  localStorage.removeItem('emp');
+  res.json(data);
+});
+});
+//_________________________
+app.get('/getpatientsname/:id', (req, res) => {
+  var emailuser = req.params.id;
+  console.log(emailuser)
+ db.Userpatient.find({email:emailuser}).exec((err, data) => {
   if (err) {
     console.log(err);
     req.send();
@@ -133,14 +164,15 @@ app.get('/getinfopatient/:id', (req, res) => {
 });
 
 //_________________________________________=>{ Get Data from Db To calendar }<=__________
-app.get('/appoinment', (req, res) => {
-  
-   db.Appoinmentsmodel.find({}).exec((err, data) => {
+app.get('/appoinment/:id', (req, res) => {
+    var doctorid = req.params.id;
+  console.log(req.params.id,'this is Id /////////////////')
+   db.Appoinmentsmodel.find({Doctorid:doctorid}).exec((err, data) => {
     if (err) {
       console.log(err);
       req.send();
     }
-    console.log(data,'calendar data')
+  //   console.log(data,'calendar data')
     res.json(data);
   });
   });
@@ -159,6 +191,7 @@ app.post('/getappoinments',(req,res)=>{
   var  StartTimes = req.body.StartTime;
   var  Subjects = req.body.Subject;
   var  Patientemais = req.body.Patientemai;
+  var  doctorids = req.body.doctorid;
   var newAppoinmentt = new db.Appoinmentsmodel({
     EndTime : EndTimes,
     Guid :  Guids,
@@ -167,7 +200,8 @@ app.post('/getappoinments',(req,res)=>{
     IsReadonly : IsReadonlys,
     StartTime : StartTimes,
     Subject : Subjects,
-    Patientemai:Patientemais
+    Patientemai:Patientemais,
+    Doctorid:doctorids
 
   })
   newAppoinmentt.save(function(err) {
@@ -249,6 +283,7 @@ app.post('/doctorregister',[check('Email').isEmail(),check('password').isLength(
    var specializations=req.body.specialization;
    var smallbriefs=req.body.shortbrief;
  var workingdaysa = req.body.workingdays;
+ 
 
   var hashedPasswords = bcrypt.hashSync(req.body.password, 8);
   
@@ -304,6 +339,12 @@ app.get('/logout', function(req, res) {
 res.status(200).send({ auth: false, token: null });
 });
 
+app.get('/222',(req,res)=>{
+  
+  res.send('hi')
+  console.log(res.body,'/////////')
+ 
+})
 // app.get("/", (req, res) => {
 // res.json({ status: "success", message: "hello" });
 // });

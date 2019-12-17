@@ -104,7 +104,7 @@ function Signuppatient() {
     success: (data) => {
       
       console.log("success send!!!")
-      window.open('http://localhost:3004/SignInPatient')
+      window.open('/SignInPatient')
     
       
     // profile();
@@ -200,7 +200,7 @@ function Signuppatient() {
       <br></br>
     <br></br>
     <br></br>
-   <a href='http://localhost:3002/signupdoctor'>SignUp As A Doctor</a>
+   <a href='/signupdoctor'>SignUp As A Doctor</a>
    <br></br>
     <br></br>
     <br></br>

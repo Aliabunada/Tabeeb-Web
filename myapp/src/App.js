@@ -63,16 +63,16 @@ function App() {
       
 
            <Switch>
-          <Route path="/" exact component={HOme}>
+          <Route path="/" exact component={SignInpatient}>
 
           </Route>
 <Route path="/ss" component={AppointmentApp}></Route>
           <Route path="/SignIndoctor" component={SignIndoctor}>
           
           </Route>
-          <Route path="/SignInPatient" component={SignInpatient}>
+          {/* <Route path="/SignInPatient" component={SignInpatient}>
           
-          </Route>
+          </Route> */}
           <Route path="/signupdoctor" component={Signupdoctor}>
         
           </Route>
@@ -90,47 +90,47 @@ function App() {
           {/* <Route path="/calender"  component={EventCalender}></Route> */}
         </Switch>
           </Router> 
-          
+           
     </div>
     
 
   );
 }
-const HOme = () =>(
-<div >
+// const HOme = () =>(
+// <div >
  
 
-          <br></br>
-          <div>
-          <a href="/SignInPatient">  <Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary"  >
-             {/* <a href="http://localhost:3000/signUppatient"></a> */}
-            SignIn Patient
-          </Button> </a>
+//           <br></br>
+//           <div>
+//           <a href="/SignInPatient">  <Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary"  >
+//              {/* <a href="http://localhost:3000/signUppatient"></a> */}
+//             SignIn Patient
+//           </Button> </a>
     
-        <a  href="/SignIndoctor"> <Button style={{margin:20 }}type="submit" variant="contained" color="primary" > SignIn Doctor</Button> </a>
+//         <a  href="/SignIndoctor"> <Button style={{margin:20 }}type="submit" variant="contained" color="primary" > SignIn Doctor</Button> </a>
           
           
-          <br></br>
-          <br></br>
-          <br></br>
-    <a href="/signuppatient"><Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary" > 
-            SignUp Patient
-          </Button> </a>
+//           <br></br>
+//           <br></br>
+//           <br></br>
+//     <a href="/signuppatient"><Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary" > 
+//             SignUp Patient
+//           </Button> </a>
           
-          <a href="/signupdoctor">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > SignUp Doctor </Button></a>
+//           <a href="/signupdoctor">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > SignUp Doctor </Button></a>
         
-          <br></br>
-          <br></br>
-          <br></br>
-    <a href="/doctorprofile"><Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary" > 
-          doctor profile
-          </Button> </a>
+//           <br></br>
+//           <br></br>
+//           <br></br>
+//     <a href="/doctorprofile"><Button style={{margin:20 , marginRight:25}} type="submit" variant="contained" color="primary" > 
+//           doctor profile
+//           </Button> </a>
           
-          <a href="/Homepage">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > HOmepage </Button></a>
+//           <a href="/Homepage">   <Button style={{margin:20 }} type="submit" variant="contained"  color="primary" > HOmepage </Button></a>
         
-          </div>
+//           </div>
 
         
-</div>)
+// </div>)
 
 export default App;

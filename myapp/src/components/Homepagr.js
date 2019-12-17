@@ -58,7 +58,7 @@ export default function HomePage() {
     
 return (
 
-    <div>
+    <div >
  
 
         {/* <CardMedia
@@ -68,48 +68,44 @@ return (
     style={{marginRight:10}}
   /> */}
  
-  {datas.map(data => ( 
-    // <h1 key={data._id}>{data.firstname}</h1>
-
-  // ))}
-  <div key={data._id}>   
-    
+  {datas.map((data,i=0) => ( 
+   
+  <div key={i++} style={{border:'1px solid black'}}>   
+     <br></br>
+  <br></br>
+  
      <Typography   component="h2" variant="h5">
-  Name :  {data.firstname}    {data.lastname} 
+
+  Name :Dr. {data.firstname}    {data.lastname} 
   </Typography>
 <br></br>
-
-
-  
-<div ><Typography component="h4" variant="h5">
-  specialization : {data.specialize}
-  </Typography>
-  
-  </div>
-
-
-  <br></br>
+<br></br>
 <Typography  key={data._id} component="h4" variant="h5">
-  Mobilenumbew : {data.mobile}
-  </Typography>
-  <br></br>
-  <Typography component="h4" variant="h5">
-  Working Days :  {data.Workingdays}
-  </Typography>
-  <br></br>
-  
-  <Typography  key={data._id} component="h4" variant="h5">
-  Email :  {data.email} 
-  </Typography>
 
+  Mobile Number : {data.mobile}
+  </Typography>
+<br></br>
+ <br></br>
+ <Typography  key={data._id} component="h4" variant="h5">
+
+ Email :  {data.email} 
+ </Typography>
+  <br></br>
+   <br></br>
+   <Typography component="h4" variant="h5">
+
+Specialization : {data.specialize}
+</Typography>
   <br></br>
   <br></br>
-  <a href="/calender">
-  <Button variant="contained"   onClick={a()}>
-  Appoinments
+  <br></br>
+  <a href={`/calender/?id=${data._id}`}style={{ color: 'green' }} >
+  <Button  variant="contained" style={{ background: '#269900' }}   >
+
+  Add Appoinments
   </Button>
   </a>
- 
+
   <br></br>
   <br></br>
   <br></br>
@@ -120,20 +116,24 @@ return (
 
         ))} 
        
-      
+       <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
     </div>
 
 
 )
 }
-function a (){
-  console.log('aaaaaaaa')
- return(
- <div>
-   <Switch>
+function a (i){
+  console.log('aaaaaaaa');
+  console.log(i,'////////')
+//  return(
+// //  <div>
+// //    <Switch>
 
-   <Route path="/calender"  component={c}></Route>
- </Switch>
- </div>
-  ) 
+// //    <Route path="/calender"  component={c}></Route>
+// //  </Switch>
+// //  </div>
+//   ) 
 }

@@ -47,9 +47,10 @@ function sending(event){
       console.log(takesenddata.email)
       localStorage.setItem('em',takesenddata.email)
       console.log(localStorage.getItem('em'),"success send!!!");
-        window.open('http://localhost:3006/doctorprofile')
+        // window.open('/doctorprofile')
+        window.open('/doctorprofile')
       // return <Redirect to="/Doctor" />;
-      console.log("success send!!!");
+      // console.log("success send!!!");
      
     },
     error: (err) => {
@@ -98,7 +99,8 @@ function SignIndoctor() {
             autoComplete="current-password"
           />
            <br></br>
-         <a href='http://localhost:3004/SignInPatient'>Login As A Patient</a>
+         <br></br>
+         <a href='/'>Login As A Patient</a>
          <br></br>
          <br></br>
           <Button
@@ -111,7 +113,11 @@ function SignIndoctor() {
           >
             Sign In
           </Button>
-          
+
+          <br></br>
+         <br></br>
+          <a href='/signupdoctor'>Signup  As A Doctor</a>
+        
         </form>
    
       </div>

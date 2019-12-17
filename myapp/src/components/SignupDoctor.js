@@ -134,7 +134,7 @@ function sending(event){
     dataType : 'json',
     success: (data) => {
       console.log("success send!!!")
-      window.open('http://localhost:3002/SignIndoctor')
+      window.open('/SignIndoctor')
     }, 
       
     error: (err) => {
@@ -240,7 +240,7 @@ function sending(event){
 <br></br>
         </div>
  
-    <br></br>
+    {/* <br></br>
     <br></br>
     <FormControl component="fieldset" >
         <FormLabel component="legend">Working Days</FormLabel>
@@ -249,12 +249,11 @@ function sending(event){
     <FormControlLabel value="Sunday,Tuesday,Theresday" control={<Radio />}   label="Sunday , Tuesday , Theresday" />
     
         </RadioGroup>
-      </FormControl>
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <input variant="outlined"
+      </FormControl> */}
+    {/* <br></br>
+    <br></br> */}
+   
+    {/* <input variant="outlined"
                     accept="image/*"
                     // className={classes.input}
                     // id="icon-button-photo"
@@ -265,12 +264,8 @@ function sending(event){
                     <IconButton color="primary" component="span" label="Choose image">
                        
                     </IconButton>
-                </label>
-                <br></br>
-    <br></br>
-
-<br></br>
-<br></br>
+                </label> */}
+    
   <div>
         <TextField
           id="add"
@@ -316,7 +311,7 @@ function sending(event){
    <br></br>
     <br></br>
     <br></br>
-    <a href='http://localhost:3002/signuppatient'>SignUp As A Patient</a>
+    <a href='/'>SignUp As A Patient</a>
     <br></br>
     <br></br>
     <br></br>

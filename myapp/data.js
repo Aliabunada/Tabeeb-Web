@@ -43,15 +43,8 @@ const Appoinments = Schema({
       StartTime : {type: String},
       Subject : {type: String},
       Patientemai:{type: String},
-
-      // Patientemail:{type: String},
-      // Doctoremail :{type: String },
+      Doctorid :{type:String}
     
-      // Subject: {type: String},
-      // Location: {type: String},
-      // StartTime:{type: String},
-      // EndTime: {type: String},
-      
 })
 const Appoinmentsmodel = mongoose.model('Appoinmentsmodel', Appoinments);
 
