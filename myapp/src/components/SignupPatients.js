@@ -10,6 +10,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import MenuItem from "@material-ui/core/MenuItem";
 import Radio from '@material-ui/core/Radio';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 // import Homepage from './Homepagr'
 import $ from "jquery";
 // import {
@@ -51,20 +54,22 @@ const Addresses = [
   },
 ];
 const useStyles = makeStyles(theme => ({
-  container: {
+  paper: {
+    marginTop: theme.spacing(8),
     display: 'flex',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  formControl: {
-    margin: theme.spacing(3),
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
   },
-  menu: {
-    width: 200,
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -104,7 +109,7 @@ function Signuppatient() {
     success: (data) => {
       
       console.log("success send!!!")
-      window.open('/SignInPatient')
+      window.open('/')
     
       
     // profile();
@@ -124,24 +129,38 @@ function Signuppatient() {
 
   return (
    
+    <Container component="main" maxWidth="xs" > 
+
+    <CssBaseline />
+
+    <div className={classes.paper} style={{alignItems:'center' }} >
+      {/* <h1 style={{marginBottom:54,marginTop:30}}> </h1> */}
+      <Typography component="h1" variant="h5">
+      Sign Up As Patient
+        </Typography>
+
+        <form className={classes.form} noValidate>
+  
+  <TextField id="firstname" label="First Name"    variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            autoFocus
+             onChange={handleChange('firstName')}  />
+ 
+  <TextField id="lasttname" label="Last Name"    variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+          
+             onChange={handleChange('lastName')}  />
+  
     
-  
-    <div className="Signuppatient" style={{padding:25,alignItems:'center' }} >
-      <h1 style={{marginBottom:54,marginTop:30}}> SignUP As Patient</h1>
-     
-    
-  
-  <TextField id="firstname" label="First Name" variant="outlined" className= {classes.menu} onChange={handleChange('firstName')}  />
-  <br></br> 
-  <br></br>
-  <br></br>
-  <TextField id="lasttname" label="Last Name" variant="outlined" className= {classes.menu} onChange={handleChange('lastName')}  />
-  
-      <br></br>
-      <br></br>
-  <br></br>
     <TextField  
-    className= {classes.menu}
+   margin="normal"
+   required
+   fullWidth
+ 
       variant="outlined" 
       type = 'password' 
       id='password' 
@@ -149,24 +168,27 @@ function Signuppatient() {
       onChange={handleChange('password')} 
       ></TextField>
 
-   
-    <br></br>
-    <br></br>
-    <br></br>
-    <TextField className= {classes.menu} id="mobilenum" label="Mobile num" variant="outlined"   onChange={handleChange('mobilenum')}  />
-    <br></br>
-    <br></br>
-    <br></br>
-    <TextField className= {classes.menu} id="email" label="Email" variant="outlined"  onChange={handleChange('Email')}/>
+ 
+    <TextField  margin="normal"
+            required
+            fullWidth
+           id="mobilenum" label="Mobile num" variant="outlined"   onChange={handleChange('mobilenum')}  />
+  
+    <TextField  margin="normal"
+            required
+            fullWidth
+            id="email" label="Email" variant="outlined"  onChange={handleChange('Email')}/>
 
-    <br></br>
-    <br></br>
+  
   <div>
   <TextField
           id="add"
           select
           label="Choose Your Address"
-          className={classes.textField}
+          margin="normal"
+          required
+          fullWidth
+       
           // value={currency}
           onChange={handleChange('Address')}
           SelectProps={{
@@ -186,8 +208,7 @@ function Signuppatient() {
           ))}
         </TextField>
         </div>
-  <br></br>
-    <br></br>
+  
     <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup aria-label="gender" name="gender1" id = "gender" onChange={handleChange('Gender')}>
@@ -205,13 +226,19 @@ function Signuppatient() {
     <br></br>
     <br></br>
 
-    <Button variant="contained" color="primary"  className= {classes.menu} onClick={sending}>
+    <Button variant="contained" color="primary"   margin="normal"
+            required
+            fullWidth
+             onClick={sending}>
    SignUP
   </Button>
     
-    
+     </form>
     </div>
     
+    </Container>
+  
+   
   
 
   );

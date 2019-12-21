@@ -1,7 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Button from '@material-ui/core/Button';
+
 // import $ from "jquery";
 import {
   BrowserRouter as Router,
@@ -20,7 +20,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Home from './components/Homepagr';
-import EventCalender from './components/calender';
+
 import c from './components/calendertest';
 import AppointmentApp from './components/Test'
 // import Image from 'material-ui-image'
@@ -66,10 +66,11 @@ function App() {
           <Route path="/" exact component={SignInpatient}>
 
           </Route>
-<Route path="/ss" component={AppointmentApp}></Route>
+{/* <Route path="/ss" component={AppointmentApp}></Route> */}
           <Route path="/SignIndoctor" component={SignIndoctor}>
           
           </Route>
+          
           {/* <Route path="/SignInPatient" component={SignInpatient}>
           
           </Route> */}

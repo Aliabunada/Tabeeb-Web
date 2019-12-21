@@ -2,11 +2,11 @@ import React from 'react';
 import {Inject,ScheduleComponent , Day ,Week , WorkWeek , Month,Agenda,ViewDirective, ViewsDirective } from '@syncfusion/ej2-react-schedule'
 
 import Button from '@material-ui/core/Button';
-// import CardMedia from '@material-ui/core/CardMedia';
+
 import Typography from '@material-ui/core/Typography';
 import  { useState, useEffect } from "react";
 import axios from 'axios';
-import $ from 'jquery'; 
+
 export default function Doctor() {
     const [datas, setDatas] = useState([]);
     const [appoints , setAppoints]= useState([]);
@@ -39,41 +39,11 @@ axios.get('/appoinmentfordoctor/'+ datas._id)
 })
 
 
-// $.ajax({
-//   url: `/appoinmentfordoctor/${datas._id}`, 
-  
-//   type : "GET",
-//   dataType : 'json',
-  
-//   success: (data) => {
-//     console.log(data,'ddd')
-//     setAppoints(data);
- 
-//     //  console.log(this.state.datafromdb,'////////hhhhhh')
-//     console.log("success !!!",appoints);
-   
-//   },
-//   error: (err) => {
-
-
-//     // alert('the email or password is wrong');
-//     console.log('err', err);
-//   }
-// });
 }
     return (
     <div>
  
-{/* <CardMedia
-    // className={classes.media}
-    // image="/static/images/cards/contemplative-reptile.jpg"
-    title="profile picture"
-    style={{marginRight:20}}
-  /> */}
-  {/* {datas.map(data => (
-    <h1 key={data._id}>{data.firstname}</h1>
 
-  ))} */}
   
     <Typography component="h2" variant="h5">
         Name :  {datas.firstname}       {datas.lastname}
@@ -95,10 +65,10 @@ axios.get('/appoinmentfordoctor/'+ datas._id)
         <br></br>
         <Button
             type="submit"
-            // fullWidth
+            
             variant="contained"
             color="primary"
-            // className={classes.submit}
+           
             onClick={Appoinment}
           >
           Table for Appoinments
@@ -129,7 +99,7 @@ axios.get('/appoinmentfordoctor/'+ datas._id)
       </div>}
       
        
-{/* </div> */}
+
     </div>
   
     </div>

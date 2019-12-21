@@ -3,7 +3,7 @@ import {Inject,ScheduleComponent , Day ,Week , WorkWeek , Month,Agenda,ViewDirec
 import { Internationalization, extend } from '@syncfusion/ej2-base';
 import { Button } from '@material-ui/core';
 import $ from 'jquery';
-import  * as dataSource from './datasource.json';
+
 // import { extend } from '@syncfusion/ej2-base';
 // import axios from 'axios';
 class c extends React.Component {
@@ -23,11 +23,15 @@ class c extends React.Component {
         }
         this.arr = []
 
-         this.dataaaa = extend([], dataSource.scheduleData, null, true);
+      
         this.instance = new Internationalization();
     }
 
-
+    onEventRendered(args) {
+      if (args.data.EndTime < this.scheduleObj.selectedDate) {
+          args.element.classList.add('e-past-app');
+      }
+  }
 
     getTimeString(value) {
         return this.instance.formatDate(value, { skeleton: 'hm' });
@@ -96,15 +100,14 @@ class c extends React.Component {
             <div>
         <div> 
           {this.state.datafromdb?
-          <ScheduleComponent currentView='Month' width='100%' height='550px' selectedDate={new Date()} eventSettings={{   dataSource: this.state.datafromdb, template: this.eventTemplate.bind(this)
-        }} readonly={!true} startHour='8:00' endHour='15:00'>
-         <ViewsDirective > 
-  <ViewDirective option = 'month' ></ViewDirective>
+          <ScheduleComponent currentView='Week' width='100%' height='550px' selectedDate={new Date()} eventSettings={{   dataSource: this.state.datafromdb, template: this.eventTemplate.bind(this)  }} readonly={!true} startHour='8:00' endHour='15:00' isAllDay={false} >
+         {/* <ViewsDirective > 
+  <ViewDirective option = 'month' isAllDay='false' ></ViewDirective>
   <ViewDirective option = 'week' ></ViewDirective>
  <ViewDirective option = 'Day' startHour='8:00' endHour='15:00' ></ViewDirective>
  <ViewDirective option = 'TimelineDay'></ViewDirective>
  <ViewDirective option = 'TimelineMonth'></ViewDirective>
- </ViewsDirective>
+ </ViewsDirective> */}
       <Inject services={[Day, Week, WorkWeek, Month, Agenda]}/>
       <br></br>
     

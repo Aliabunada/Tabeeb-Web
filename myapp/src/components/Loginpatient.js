@@ -50,6 +50,7 @@ function sending(event){
           window.open('/Homepage')
     },
     error: (err) => {
+      alert('the email or password is wrong');
       console.log('err', err);
     }
   });
