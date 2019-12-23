@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {  Link } from 'react-router-dom'
 import $ from "jquery";
 
 
@@ -101,7 +101,8 @@ function sending(event){
           />
                <br></br>
           <br></br>
-         <a href='/SignIndoctor'>Login As A Doctor</a>
+          <Link to="/SignIndoctor">Login As A Doctor </Link>
+         {/* <a href='/SignIndoctor'>Login As A Doctor</a> */}
          <br></br>
          <br></br>
           <Button
@@ -116,7 +117,8 @@ function sending(event){
           </Button>
           <br></br>
           <br></br>
-         <a href='/signuppatient'>Signup As Patient</a>
+          <Link to="/signuppatient">Signup As Patient</Link>
+         {/* <a href='/signuppatient'>Signup As Patient</a> */}
        
         </form>
       </div>

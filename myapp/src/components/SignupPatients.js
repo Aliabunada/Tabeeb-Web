@@ -13,6 +13,7 @@ import Radio from '@material-ui/core/Radio';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import {  Link } from 'react-router-dom';
 // import Homepage from './Homepagr'
 import $ from "jquery";
 // import {
@@ -221,7 +222,8 @@ function Signuppatient() {
       <br></br>
     <br></br>
     <br></br>
-   <a href='/signupdoctor'>SignUp As A Doctor</a>
+    <Link to="/signupdoctor">SignUp As A Doctor</Link>
+   {/* <a href='/signupdoctor'>SignUp As A Doctor</a>/ */}
    <br></br>
     <br></br>
     <br></br>

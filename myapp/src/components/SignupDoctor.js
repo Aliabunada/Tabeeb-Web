@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import $ from "jquery";
 import  { useState } from 'react';
+import {  Link } from 'react-router-dom';
 // import Doctor from './Doctor'
 // import {
 //   BrowserRouter ,
@@ -313,7 +314,8 @@ function sending(event){
    
     <br></br>
     <br></br>
-    <a href='/'>SignUp As A Patient</a>
+    <Link to="/signuppatient">SignUp As A Patient</Link>
+    {/* <a href='/signuppatient'>Signup As Patient</a> */}
     <br></br>
     <br></br>
     <br></br>

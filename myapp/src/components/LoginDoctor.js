@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import $ from "jquery";
-
+import {  Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -100,7 +100,8 @@ function SignIndoctor() {
           />
            <br></br>
          <br></br>
-         <a href='/'>Login As A Patient</a>
+         <Link to="/">Login As A Patient</Link>
+         {/* <a href='/'>Login As A Patient</a> */}
          <br></br>
          <br></br>
           <Button
@@ -116,7 +117,8 @@ function SignIndoctor() {
 
           <br></br>
          <br></br>
-          <a href='/signupdoctor'>Signup  As A Doctor</a>
+         <Link to="/signupdoctor">Signup  As A Doctor</Link>
+          {/* <a href='/signupdoctor'>Signup  As A Doctor</a> */}
         
         </form>
    

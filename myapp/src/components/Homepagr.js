@@ -9,6 +9,8 @@ import { shadows } from '@material-ui/system';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
+import {  Link } from 'react-router-dom';
+
 //   import EventCalender from './calender';
 //   import c from './calendertest'
 // import {
@@ -89,14 +91,24 @@ export default function HomePage() {
                 <br></br>
                 <br></br>
                 <br></br>
+                {/* <Link to="/users/1">≈</Link> */}
 
-                <a href={`/calender/?id=${data._id}`} >
+                <Link to={`/calender/?id=${data._id}`}>
+                <Button variant="contained" color="primary"  >
+
+Add Appoinments
+</Button> 
+
+
+                </Link>
+
+                {/* <a href={`/calender/?id=${data._id}`} >
                   <Button variant="contained" color="primary"  >
 
                     Add Appoinments
   </Button>
 
-                </a>
+                </a> */}
                 <br></br>
                 <br></br>
                 <br></br>
