@@ -1,24 +1,13 @@
 import React from 'react';
-// import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import StarRatings from './react-star-ratings';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { shadows } from '@material-ui/system';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import {  Link } from 'react-router-dom';
 
-//   import EventCalender from './calender';
-//   import c from './calendertest'
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-
-// } from "react-router-dom";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -29,27 +18,18 @@ const useStyles = makeStyles(theme => ({
  
 }));
 export default function HomePage() {
-  console.log(localStorage.getItem('emp'), "success send!!!");
+  // console.log(localStorage.getItem('emp'), "success send!!!");
   var emailuser = localStorage.getItem('emp')
   const classes = useStyles();
   const [datas, setDatas] = useState([]);
   const [stars, setStars] = useState([]);
 
-
   useEffect(() => {
-
     axios.get('/gettingdata')
       .then(({ data }) => {
         setDatas(data);
 
-
-        console.log(data)
-        console.log("success recive!!!", data)
       });
-
-
-
-
   }, [])
 
 
@@ -60,7 +40,6 @@ export default function HomePage() {
         <Grid container spacing={6} justify="center" alignItems="center"  >
           <Grid item xs={8} style={{ textAlign: "center" }} >
             <Paper className={classes.shadow}>
-
 
               <div key={i++} style={{ border: '1px solid black', textAlign: "center" }} boxShadow={11}>
                 <br></br>
@@ -91,50 +70,26 @@ export default function HomePage() {
                 <br></br>
                 <br></br>
                 <br></br>
-                {/* <Link to="/users/1">≈</Link> */}
+               
 
                 <Link to={`/calender/?id=${data._id}`}>
                 <Button variant="contained" color="primary"  >
 
 Add Appoinments
 </Button> 
-
-
                 </Link>
 
-                {/* <a href={`/calender/?id=${data._id}`} >
-                  <Button variant="contained" color="primary"  >
-
-                    Add Appoinments
-  </Button>
-
-                </a> */}
                 <br></br>
                 <br></br>
                 <br></br>
-
 
               </div>
-
-
-
-
             </Paper>
           </Grid>
         </Grid>
       ))}
-      {/* <CardMedia
-    // className={classes.media}
-    // image="/static/images/cards/contemplative-reptile.jpg"
-    title="profile picture"
-    style={{marginRight:10}}
-  /> */}
-
-
       <br></br>
       <br></br>
     </div>
-
-
   )
 }
