@@ -14,23 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import $ from "jquery";
 import  { useState } from 'react';
 import {  Link } from 'react-router-dom';
-// import Doctor from './Doctor'
-// import {
-//   BrowserRouter ,
-//   Switch,
-//   Route,
-  
-// } from "react-router-dom";
-// import Doctor from './Doctor'
-// function profile(){
-//   return(
-//   <Switch>
-//   <Route path="/DoctorProfile">
-//       <Doctor />
-//     </Route>
-//   </Switch>
-//   );
-// }
+
 const specialization = [
 {
   value :'ANESTHESIOLOGY',
@@ -108,8 +92,7 @@ const useStyles = makeStyles(theme => ({
 function Signupdoctor() {
   
   const classes = useStyles();
-  // const [currency, setCurrency] = useState("Gaza");
-  // const [value, setValue] =useState('male');
+
   const [values, setValues] =useState({
 
     firstName: '',
@@ -126,11 +109,11 @@ function Signupdoctor() {
 
   });
   
-// var a = values;
+
 function sending(event){
   event.preventDefault();
 
-  console.log(values)
+  
   $.ajax({
     url: '/doctorregister', 
     type : 'post',
@@ -147,25 +130,12 @@ function sending(event){
     }
   });
 }
-  // const handleChangess = event => {
-  //   setValue(event.target.value);
-  // };
+  
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
     // console.log(event.target.value,'this is the value in handle change')
   };
-  // const handleChanges = event => {
-  //   setCurrency(event.target.value);
-  //   setValues(event.target.value)
-  // };
-
-
-  // const handleMouseDownPassword = event => {
-  //   event.preventDefault();
-  // };
-  // const theme = {
-  //   spacing: value => value ** 2,
-  // }
+ 
 
   return (
    
@@ -243,31 +213,7 @@ function sending(event){
 
         </div>
  
-    {/* <br></br>
-    <br></br>
-    <FormControl component="fieldset" >
-        <FormLabel component="legend">Working Days</FormLabel>
-        <RadioGroup aria-label="Working Days" onChange={handleChange('workingdays')} name="workingdays" id ="WorkingDayss" >
-        <FormControlLabel value="Saterday,Monday,Wednesday" control={<Radio />}  label="Saterday , Monday , Wednesday" />
-    <FormControlLabel value="Sunday,Tuesday,Theresday" control={<Radio />}   label="Sunday , Tuesday , Theresday" />
-    
-        </RadioGroup>
-      </FormControl> */}
-    {/* <br></br>
-    <br></br> */}
    
-    {/* <input variant="outlined"
-                    accept="image/*"
-                    // className={classes.input}
-                    // id="icon-button-photo"
-                    // onChange={handleChange('image')}
-                    type="file"
-                />
-                <label htmlFor="icon-button-photo">
-                    <IconButton color="primary" component="span" label="Choose image">
-                       
-                    </IconButton>
-                </label> */}
     
   <div>
         <TextField
@@ -310,12 +256,12 @@ function sending(event){
       </FormControl>
       
    
-   {/* <a href='#'>SignUp As A Doctor</a> */}
+ 
    
     <br></br>
     <br></br>
     <Link to="/signuppatient">SignUp As A Patient</Link>
-    {/* <a href='/signuppatient'>Signup As Patient</a> */}
+   
     <br></br>
     <br></br>
     <br></br>
