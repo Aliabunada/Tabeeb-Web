@@ -1,6 +1,4 @@
 import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
@@ -14,24 +12,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import {  Link } from 'react-router-dom';
-// import Homepage from './Homepagr'
+
 import $ from "jquery";
-// import {
-  
-//   Switch,
-//   Route,
-  
-// } 
-// from "react-router-dom";
-// function profile(){
-//   return(
-//   <Switch>
-//   <Route path="/Homepage">
-//       <Homepage />
-//     </Route>
-//   </Switch>
-//   );
-// }
 const Addresses = [
   {
     value: 'Gaza',
@@ -77,8 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 function Signuppatient() {
   const classes = useStyles();
-  // const [currency, setCurrency] = React.useState("Gaza");
-  // const [value, setValue] = React.useState('male');
   const [values, setValues] = React.useState({
     firstName: '',
     lastName: '',
@@ -90,18 +70,8 @@ function Signuppatient() {
   });
   function sending(event){
     event.preventDefault();
-  // var takesenddata ={
-  //   email:$('#email').val(),
-  //   password:$('#password').val(),
-  //   firstName: $('#firstname').val(),
-  //   lastName: $('#lasttname').val(),
-  //   mobilenum: $('#mobilenum').val(),
-   
-  //   Address : $('#address').val(),
-  //   Gender : $('#gender').val()
-   
-  // }
-  console.log(values)
+ 
+  // console.log(values)
   $.ajax({
     url: '/patientregister', 
     type : "post",
@@ -109,7 +79,7 @@ function Signuppatient() {
     dataType : 'json',
     success: (data) => {
       
-      console.log("success send!!!")
+      // console.log("success send!!!")
       window.open('/')
     
       
@@ -124,7 +94,7 @@ function Signuppatient() {
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
-    console.log(event.target.value)
+    // console.log(event.target.value)
   };
 
 
@@ -135,7 +105,7 @@ function Signuppatient() {
     <CssBaseline />
 
     <div className={classes.paper} style={{alignItems:'center' }} >
-      {/* <h1 style={{marginBottom:54,marginTop:30}}> </h1> */}
+     
       <Typography component="h1" variant="h5">
       Sign Up As Patient
         </Typography>
@@ -223,7 +193,6 @@ function Signuppatient() {
     <br></br>
     <br></br>
     <Link to="/signupdoctor">SignUp As A Doctor</Link>
-   {/* <a href='/signupdoctor'>SignUp As A Doctor</a>/ */}
    <br></br>
     <br></br>
     <br></br>
