@@ -37,16 +37,16 @@ function sending(event){
     password:$('#passwordlogin').val()
 
   }
-  console.log(takesenddata)
+  // console.log(takesenddata)
   $.ajax({
     url: '/logindoctor', 
     type : "post",
     data : takesenddata , 
     dataType : 'json',
     success: (data) => {
-      console.log(takesenddata.email)
+      // console.log(takesenddata.email)
       localStorage.setItem('em',takesenddata.email)
-      console.log(localStorage.getItem('em'),"success send!!!");
+      // console.log(localStorage.getItem('em'),"success send!!!");
         // window.open('/doctorprofile')
         window.open('/doctorprofile')
       // return <Redirect to="/Doctor" />;
