@@ -36,7 +36,7 @@ function sending(event){
     email:$('#email').val(),
     password:$('#password').val()
   }
-  console.log(takesenddata)
+  // console.log(takesenddata)
   $.ajax({
     url: '/loginpatient', 
     type : "post",
@@ -44,9 +44,9 @@ function sending(event){
     dataType : 'json',
     success: (data) => {
  
-      console.log("success send!!!")
+      // console.log("success send!!!")
       localStorage.setItem('emp',takesenddata.email)
-      console.log(localStorage.getItem('emp'),"success send!!!");
+      // console.log(localStorage.getItem('emp'),"success send!!!");
           window.open('/Homepage')
     },
     error: (err) => {
@@ -55,15 +55,6 @@ function sending(event){
     }
   });
 }
-// function profile(){
-//   return(
-//   <Switch>
-//   <Route path="/Homepage">
-//       <Homepage />
-//     </Route>
-//   </Switch>
-//   );
-// }
 
  function SignInpatient() {
   const classes = useStyles();
@@ -102,7 +93,7 @@ function sending(event){
                <br></br>
           <br></br>
           <Link to="/SignIndoctor">Login As A Doctor </Link>
-         {/* <a href='/SignIndoctor'>Login As A Doctor</a> */}
+         
          <br></br>
          <br></br>
           <Button
@@ -118,7 +109,7 @@ function sending(event){
           <br></br>
           <br></br>
           <Link to="/signuppatient">Signup As Patient</Link>
-         {/* <a href='/signuppatient'>Signup As Patient</a> */}
+         
        
         </form>
       </div>
