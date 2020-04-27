@@ -80,7 +80,7 @@ function Signuppatient() {
     success: (data) => {
       
       // console.log("success send!!!")
-      window.open('/')
+      window.location.replace('/')
     
       
     // profile();

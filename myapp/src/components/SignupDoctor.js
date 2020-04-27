@@ -121,7 +121,7 @@ function sending(event){
     dataType : 'json',
     success: (data) => {
       console.log("success send!!!")
-      window.open('/SignIndoctor')
+      window.location.replace('/SignIndoctor')
     }, 
       
     error: (err) => {

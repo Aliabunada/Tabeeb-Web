@@ -48,7 +48,9 @@ function sending(event){
       localStorage.setItem('em',takesenddata.email)
       // console.log(localStorage.getItem('em'),"success send!!!");
         // window.open('/doctorprofile')
-        window.open('/doctorprofile')
+
+
+        window.location.replace('/doctorprofile');
       // return <Redirect to="/Doctor" />;
       // console.log("success send!!!");
      

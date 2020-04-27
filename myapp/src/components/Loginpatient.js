@@ -47,7 +47,7 @@ function sending(event){
       // console.log("success send!!!")
       localStorage.setItem('emp',takesenddata.email)
       // console.log(localStorage.getItem('emp'),"success send!!!");
-          window.open('/Homepage')
+      window.location.replace('/Homepage')
     },
     error: (err) => {
       alert('the email or password is wrong');
